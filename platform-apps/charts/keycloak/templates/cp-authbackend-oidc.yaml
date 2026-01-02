@@ -11,7 +11,7 @@ metadata:
 spec:
   # Optional: hard cap so Kubernetes kills the Pod if it runs too long.
   # Keep this >= TIMEOUT_SECONDS.
-  activeDeadlineSeconds: 360
+  activeDeadlineSeconds: 660
   backoffLimit: 0          # we handle retries inside the container
   template:
     spec:
@@ -23,7 +23,7 @@ spec:
           - name: URL
             value: "https://keycloak{{ .Values.kubrix.keycloak.domainName }}/realms/{{ $.Values.kubrix.keycloak.realm.realmid }}"
           - name: TIMEOUT_SECONDS
-            value: "300"                          # total time to keep trying
+            value: "600                          # total time to keep trying
           - name: SLEEP_SECONDS
             value: "5"                            # wait between attempts
 {{- if (contains "nip.io" .Values.kubrix.keycloak.domainName ) }}
